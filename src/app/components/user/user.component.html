@@ -1,1 +1,11 @@
-<p>user works!</p>
+<div *ngFor="let user of users">
+  {{user.id}}
+  {{user.name}}
+  {{user.age}}
+  {{user.status}}
+
+  <a [routerLink]="[ user.id]">info</a>
+<!--  не відображає те, що я хочу(((-->
+</div>
+
+<router-outlet></router-outlet>

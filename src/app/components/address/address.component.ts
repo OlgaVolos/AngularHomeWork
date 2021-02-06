@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {User} from '../../../models/User';
+import {ActivatedRoute} from '@angular/router';
+
 
 @Component({
   selector: 'app-address',
@@ -6,8 +9,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./address.component.css']
 })
 export class AddressComponent implements OnInit {
+  @Input()
 
-  constructor() { }
+  user: User;
+
+  constructor(private activatedRoute: ActivatedRoute) {
+    this.activatedRoute.params.subscribe(value => console.log(value));
+
+  }
+
 
   ngOnInit(): void {
   }

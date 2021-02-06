@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component,  OnInit} from '@angular/core';
+import {User} from '../../../models/User';
+import {users} from '../../../data/users';
 
 @Component({
   selector: 'app-users',
@@ -6,6 +8,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
+
+ users: User[] = users;
+
 
   constructor() { }
 
