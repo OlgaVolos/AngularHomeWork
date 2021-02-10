@@ -1,10 +1,11 @@
 <div>
   <hr>
-  {{user.id}}
-  {{user.name}}
-  {{user.username}}
-  {{user.address.city}}
+  {{user?.id}}
+  {{user?.name}}
+  {{user?.username}}
+  {{user?.address.city}}
 
-  <<button (click)="toPost()">post</button>>
-  <router-outlet></router-outlet>
+  <button routerLink="/posts">post</button>
+
 </div>
+<router-outlet></router-outlet>

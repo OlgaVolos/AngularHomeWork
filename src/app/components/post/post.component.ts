@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Post} from '../../../models/Post';
+import {Post} from '../../models/Post';
 import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
@@ -8,14 +8,17 @@ import {ActivatedRoute, Router} from '@angular/router';
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {
-  @Input()
+@Input()
   post: Post;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(private  router: Router, private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit(): void {
   }
 
 
+  goToPost(): void {
+    this.router.navigate([this.post.id], {relativeTo: this.activatedRoute, state: this.post});
+  }
 }

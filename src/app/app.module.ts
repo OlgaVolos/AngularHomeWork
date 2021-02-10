@@ -9,19 +9,21 @@ import {FullUserComponent} from './components/full-user/full-user.component';
 import {RouterModule, Routes} from '@angular/router';
 import {UserResolveService} from './servises/user-resolve/user-resolve.service';
 import {PostResolveService} from './servises/post-resolve/post-resolve.service';
-import { PostsComponent } from './components/posts/posts/posts.component';
-import { PostComponent } from './components/post/post/post.component';
+import { PostsComponent } from './components/posts/posts.component';
+import { PostComponent } from './components/post/post.component';
 import { FullPostComponent } from './components/full-post/full-post.component';
 
 
 const routes: Routes = [
   {
     path: 'users', component: UsersComponent, resolve: {userData: UserResolveService},
-    children: [{path: ':id', component: FullUserComponent}]
+    children: [{path: ':id', component: FullUserComponent},
+      // {path: 'posts', component: PostsComponent, resolve: {postData: PostResolveService}},
+    ]
   },
-  {path: 'users/:id', component: PostComponent, resolve: {postData: PostResolveService},
-  children: [{path: ':posts', component: FullPostComponent}]},
-  // {path: '', redirectTo: 'users', pathMatch: 'full'}
+  {path: 'posts', component: PostsComponent, resolve: {postData: PostResolveService},
+  children: [{path: ':id', component: FullPostComponent}]},
+  {path: '', redirectTo: 'users', pathMatch: 'full'}
 ];
 
 @NgModule({
