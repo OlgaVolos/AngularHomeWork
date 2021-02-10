@@ -6,15 +6,22 @@ import {HttpClientModule} from '@angular/common/http';
 import {UsersComponent} from './components/users/users.component';
 import {UserComponent} from './components/user/user.component';
 import {FullUserComponent} from './components/full-user/full-user.component';
-import {RouterModule} from '@angular/router';
-import {UserResolveService} from './servises/resolve/user-resolve.service';
+import {RouterModule, Routes} from '@angular/router';
+import {UserResolveService} from './servises/user-resolve/user-resolve.service';
+import {PostResolveService} from './servises/post-resolve/post-resolve.service';
+import { PostsComponent } from './components/posts/posts/posts.component';
+import { PostComponent } from './components/post/post/post.component';
+import { FullPostComponent } from './components/full-post/full-post.component';
 
-const routes = [
+
+const routes: Routes = [
   {
     path: 'users', component: UsersComponent, resolve: {userData: UserResolveService},
     children: [{path: ':id', component: FullUserComponent}]
   },
-  {path: '', redirectTo: 'users', pathMatch: 'full'}
+  {path: 'users/:id', component: PostComponent, resolve: {postData: PostResolveService},
+  children: [{path: ':posts', component: FullPostComponent}]},
+  // {path: '', redirectTo: 'users', pathMatch: 'full'}
 ];
 
 @NgModule({
@@ -22,7 +29,10 @@ const routes = [
     AppComponent,
     UsersComponent,
     UserComponent,
-    FullUserComponent
+    FullUserComponent,
+    PostsComponent,
+    PostComponent,
+    FullPostComponent
   ],
   imports: [
     BrowserModule,

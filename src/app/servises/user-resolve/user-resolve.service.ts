@@ -13,7 +13,7 @@ export class UserResolveService implements Resolve<User[]> {
   }
 
   resolve(): Observable<User[]> | Promise<User[]> {
-        return this.userService.getUsers()
+        return this.userService.getUsers();
     }
 
 
