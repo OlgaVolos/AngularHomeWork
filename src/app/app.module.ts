@@ -15,15 +15,17 @@ import { FullPostComponent } from './components/full-post/full-post.component';
 
 
 const routes: Routes = [
+  {path: '', redirectTo: 'users', pathMatch: 'full'},
+
   {
-    path: 'users', component: UsersComponent, resolve: {userData: UserResolveService},
-    children: [{path: ':id', component: FullUserComponent},
-      // {path: 'posts', component: PostsComponent, resolve: {postData: PostResolveService}},
-    ]
-  },
-  {path: 'posts', component: PostsComponent, resolve: {postData: PostResolveService},
-  children: [{path: ':id', component: FullPostComponent}]},
-  {path: '', redirectTo: 'users', pathMatch: 'full'}
+    path: 'users', component: UsersComponent, resolve: {userData: UserResolveService}, children:
+      [{path: ':id', component: FullUserComponent, children: [
+          {
+            path: 'posts', component: PostsComponent, resolve: {postData: PostResolveService}, children: [
+              {path: ':id', component: FullPostComponent}
+            ]},
+          ]},
+        ]},
 ];
 
 @NgModule({
